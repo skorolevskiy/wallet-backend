@@ -21,7 +21,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		user := api.Group("/auth")
 		{
 			user.POST("/sign-up", h.signUp)
-			user.POST("/sign-up", h.signIn)
+			user.POST("/sign-in", h.signIn)
 		}
 
 		wallet := api.Group("/wallet")
