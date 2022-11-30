@@ -18,6 +18,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	api := router.Group("/api")
 	{
+		user := api.Group("/auth")
+		{
+			user.POST("/sign-up", h.signUp)
+			user.POST("/sign-up", h.signIn)
+		}
+
 		wallet := api.Group("/wallet")
 		{
 			wallet.POST("/", h.createWallet)

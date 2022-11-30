@@ -1,5 +1,7 @@
 package domain
 
+import "time"
+
 type Transaction struct {
 	ID               int       `json:"id"`
 	WalletID         int       `json:"walletId"`
