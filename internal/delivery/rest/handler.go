@@ -22,7 +22,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		user.POST("/sign-in", h.signIn)
 	}
 
-	api := router.Group("/api")
+	api := router.Group("/api", h.userIdentity)
 	{
 
 		wallet := api.Group("/wallet")
