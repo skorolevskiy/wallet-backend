@@ -1,4 +1,4 @@
-package http
+package rest
 
 import (
 	"github.com/gin-gonic/gin"
@@ -16,13 +16,14 @@ func NewHandler(services *service.Service) *Handler {
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 
+	user := router.Group("/auth")
+	{
+		user.POST("/sign-up", h.signUp)
+		user.POST("/sign-in", h.signIn)
+	}
+
 	api := router.Group("/api")
 	{
-		user := api.Group("/auth")
-		{
-			user.POST("/sign-up", h.signUp)
-			user.POST("/sign-in", h.signIn)
-		}
 
 		wallet := api.Group("/wallet")
 		{

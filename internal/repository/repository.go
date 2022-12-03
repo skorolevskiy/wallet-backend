@@ -3,9 +3,11 @@ package repository
 import (
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
+	"github.com/skorolevskiy/wallet-backend/internal/domain"
 )
 
 type Authorization interface {
+	CreateUser(user domain.User) (int, error)
 }
 
 type Wallet interface {
@@ -21,5 +23,7 @@ type Repository struct {
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
-	return &Repository{}
+	return &Repository{
+		Authorization: NewAuthPostgres(db),
+	}
 }

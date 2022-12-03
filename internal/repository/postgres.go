@@ -5,6 +5,12 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+const (
+	usersTable       = "users"
+	walletsTable     = "wallet"
+	transactionTable = "transaction"
+)
+
 type Config struct {
 	Host     string
 	Port     string
