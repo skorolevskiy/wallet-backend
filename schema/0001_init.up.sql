@@ -3,7 +3,7 @@ CREATE TABLE users (
     email varchar(255) not null unique,
     username varchar(255) not null unique,
     password varchar(255) not null,
-    register_at TIMESTAMP not null
+    register_at TIMESTAMP default now()
 );
 
 CREATE TABLE wallets (
@@ -11,7 +11,7 @@ CREATE TABLE wallets (
     name varchar(255) not null,
     balance float not null,
     currency varchar(255) not null,
-    register_at TIMESTAMP not null
+    register_at TIMESTAMP default now()
 );
 
 CREATE TABLE users_wallets (
@@ -26,7 +26,7 @@ CREATE TABLE transactions (
     balance_after float not null,
     commission_amount float,
     currency varchar(255) not null,
-    created_at TIMESTAMP not null
+    created_at TIMESTAMP default now()
 );
 
 CREATE TABLE wallets_transactions (

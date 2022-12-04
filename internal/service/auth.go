@@ -31,7 +31,6 @@ func NewAuthService(repo repository.Authorization) *AuthService {
 
 func (s *AuthService) CreateUser(user domain.User) (int, error) {
 	user.Password = generatePasswordHash(user.Password)
-	user.RegisterAt = time.Now()
 	return s.repo.CreateUser(user)
 }
 
