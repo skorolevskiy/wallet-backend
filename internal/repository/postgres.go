@@ -6,9 +6,11 @@ import (
 )
 
 const (
-	usersTable       = "users"
-	walletsTable     = "wallet"
-	transactionTable = "transaction"
+	usersTable              = "users"
+	walletsTable            = "wallets"
+	usersWalletTable        = "users_wallets"
+	transactionTable        = "transactions"
+	walletsTransactionTable = "wallets_transactions"
 )
 
 type Config struct {

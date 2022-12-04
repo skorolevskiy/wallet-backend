@@ -12,6 +12,7 @@ type Authorization interface {
 }
 
 type Wallet interface {
+	CreateWallet(userId int, list domain.Wallet) (int, error)
 }
 
 type Transaction interface {

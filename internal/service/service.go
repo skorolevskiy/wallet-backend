@@ -12,6 +12,7 @@ type Authorization interface {
 }
 
 type Wallet interface {
+	CreateWallet(userId int, wallet domain.Wallet) (int, error)
 }
 
 type Transaction interface {
@@ -26,5 +27,6 @@ type Service struct {
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Authorization: NewAuthService(repos.Authorization),
+		Wallet:        NewWalletService(repos.Wallet),
 	}
 }
