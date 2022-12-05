@@ -7,7 +7,7 @@ type Wallet struct {
 	Name       string    `json:"name" db:"name" binding:"required"`
 	Balance    float64   `json:"balance" db:"balance"`
 	Currency   string    `json:"currency" db:"currency"`
-	RegisterAt time.Time `db:"register_at"`
+	RegisterAt time.Time `json:"register_at" db:"register_at"`
 }
 
 type UserWallets struct {

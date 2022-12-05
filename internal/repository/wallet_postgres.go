@@ -37,3 +37,10 @@ func (r *WalletPostgres) CreateWallet(userId int, wallet domain.Wallet) (int, er
 
 	return id, tx.Commit()
 }
+
+func (r *WalletPostgres) GetAllWallets(userId int) ([]domain.Wallet, error) {
+	var wallets []domain.Wallet
+	getAllQuery := fmt.Sprintf("SELECT tl.id, tl.name, tl.balance, tl.currency, tl.register_at FROM %s tl INNER JOIN %s ul on tl.id = ul.wallet_id WHERE ul.user_id = $1", walletsTable, usersWalletTable)
+	err := r.db.Select(&wallets, getAllQuery, userId)
+	return wallets, err
+}

@@ -17,3 +17,7 @@ func (s *WalletService) CreateWallet(userId int, wallet domain.Wallet) (int, err
 	wallet.Balance = 0
 	return s.repo.CreateWallet(userId, wallet)
 }
+
+func (s *WalletService) GetAllWallets(userId int) ([]domain.Wallet, error) {
+	return s.repo.GetAllWallets(userId)
+}
