@@ -14,6 +14,7 @@ type Authorization interface {
 type Wallet interface {
 	CreateWallet(userId int, wallet domain.Wallet) (int, error)
 	GetAllWallets(userId int) ([]domain.Wallet, error)
+	GetWalletById(userId, walletId int) (domain.Wallet, error)
 }
 
 type Transaction interface {

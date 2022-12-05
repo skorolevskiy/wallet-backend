@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/skorolevskiy/wallet-backend/internal/domain"
 	"net/http"
+	"strconv"
 )
 
 func (h *Handler) createWallet(c *gin.Context) {
@@ -51,7 +52,24 @@ func (h *Handler) getAllWallets(c *gin.Context) {
 }
 
 func (h *Handler) getWalletById(c *gin.Context) {
+	userId, err := getUserId(c)
+	if err != nil {
+		return
+	}
 
+	walletId, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		newErrorResponse(c, http.StatusBadRequest, "invalid id param")
+		return
+	}
+
+	wallet, err := h.services.GetWalletById(userId, walletId)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, wallet)
 }
 
 func (h *Handler) updateWallet(c *gin.Context) {

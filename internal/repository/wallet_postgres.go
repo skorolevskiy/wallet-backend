@@ -44,3 +44,10 @@ func (r *WalletPostgres) GetAllWallets(userId int) ([]domain.Wallet, error) {
 	err := r.db.Select(&wallets, getAllQuery, userId)
 	return wallets, err
 }
+
+func (r *WalletPostgres) GetWalletById(userId, walletId int) (domain.Wallet, error) {
+	var wallet domain.Wallet
+	getByIdQuery := fmt.Sprintf("SELECT tl.id, tl.name, tl.balance, tl.currency, tl.register_at FROM %s tl INNER JOIN %s ul on tl.id = ul.wallet_id WHERE ul.user_id = $1 AND ul.wallet_id = $2", walletsTable, usersWalletTable)
+	err := r.db.Get(&wallet, getByIdQuery, userId, walletId)
+	return wallet, err
+}
