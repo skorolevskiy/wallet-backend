@@ -21,7 +21,7 @@ func (r *WalletPostgres) CreateWallet(userId int, wallet domain.Wallet) (int, er
 	}
 
 	var id int
-	createWallerQuery := fmt.Sprintf("INSERT INTO %s (name, balance, currency) VALUES ($1, $2, $3)", walletsTable)
+	createWallerQuery := fmt.Sprintf("INSERT INTO %s (name, balance, currency) VALUES ($1, $2, $3) RETURNING id", walletsTable)
 	row := tx.QueryRow(createWallerQuery, wallet.Name, wallet.Balance, wallet.Currency)
 	if err := row.Scan(&id); err != nil {
 		tx.Rollback()
